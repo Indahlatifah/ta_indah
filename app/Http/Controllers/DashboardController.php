@@ -102,10 +102,10 @@ class DashboardController
         ]);
     }
 
-    public function Supercreate()
-    {
-        return view('super.create_account');
-    }
+    // public function Supercreate()
+    // {
+    //     return view('super.create_account');
+    // }
  
     public function Supercreate_user(Request $request)
     {
@@ -117,34 +117,57 @@ class DashboardController
         'remember_token' => Str::random(60),
       ]);
     //   return
-    $users = User::all(); //pemanggilan data -- pake DB::table() bisa juga
+    // $users = User::all(); //pemanggilan data -- pake DB::table() bisa juga
+    $users = DB::table('users') -> get();
     return view('super.admin_control', compact('users'));
+    // return redirect('superadmin/admincontrol/listuser');
     }
 
  public function Super_read()
  {
+    // $users = User::all();
     $users = DB::table('users') -> get();
     return view('super.admin_control', ['users' => $users]);
+    // return redirect('superadmin/admincontrol/listuser', ['users' => $users]);
 
 }
 
-public function editakun(User $users)
+public function editakun(User $user)
 {
+    // $user = User::find($user)->get();
+    // $user = DB::table('users')->where('id', $user)->first();
+    // dd($user);
     
-    return view('super.edit_account', compact('users'));
+    return view('super.edit_account', compact('user'));
 }
 
-public function updateakun(Request $request, User $users)
+public function updateakun(Request $request, User $user)
 {
+    // $user = DB::table('users')->where('id', $user)->first();
+    // $user = User::find($user)->get();
+    // dd($user);
+
     $request->validate([
         'name' => 'required',
         'email' => 'required',
         'password' => 'required',
         'type' => 'required',
     ]);
+    
+    // $attr = $request->all();
+    // $user->update($attr);
+    // $user->save($request->all());
 
-    $users->update($request->all());
+    // dd($user);
+    // return view('super.admin_control', compact('users'));
+    $user->name = request('name');
+    $user->email = request('email');
+    $user->password = bcrypt(request('password'));
+    $user->type = request('type');
 
-    return redirect()->route('updateaccount')->with('succes','Siswa Berhasil di Update');
+    $user->save();
+
+    return redirect('superadmin/admincontrol/listuser')->with('succes','Siswa Berhasil di Update');
+    // return back();
 }
 }

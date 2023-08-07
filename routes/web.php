@@ -131,12 +131,12 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function ()
     Route::get('/superadmin/profil', [DashboardController::class, 'SuperProfil'])->name('superadmin.profil');    
     Route::get('/superadmin/edit_profil', [DashboardController::class, 'SuperEditprofile'])->name('superadmin.editprofile');
     Route::get('/superadmin/admincontrol', [DashboardController::class, 'SuperAdminControl'])->name('superadmin.admin_control');    
-    Route::get('superadmin/create', [DashboardController::class, 'Supercreate'])->name('superadmin.create');
+    // Route::get('superadmin/create', [DashboardController::class, 'Supercreate'])->name('superadmin.create');
     Route::post('superadmin/admincontrol', [DashboardController::class, 'Supercreate_user'])->name('superadmin.create_user');
-    Route::get('superadmin/admincontrol', [DashboardController::class, 'Super_read'])->name('superadmin.create_user');
-    Route::get('/superadmin/edit_account', [DashboardController::class, 'SuperEditAccount'])->name('superadmin.editaccount');
-    Route::get('/superadmin/editakun/{id_user}', [DashboardController::class, 'EditAkun'])->name('superadmin.editakun');
-    Route::post('/superadmin/update', [DashboardController::class, 'updateakun'])->name('superadmin.updateakun');
+    Route::get('superadmin/admincontrol/listuser', [DashboardController::class, 'Super_read'])->name('superadmin.readuser');
+    Route::get('/superadmin/edit_account/{user}', [DashboardController::class, 'editakun'])->name('superadmin.editaccount');
+    // Route::get('/superadmin/editakun/{id_user}', [DashboardController::class, 'EditAkun'])->name('superadmin.editakun');
+    Route::put('/superadmin/edit_account/{user}/update', [DashboardController::class, 'updateakun'])->name('superadmin.updateakun');
     
     
 });

@@ -63,22 +63,24 @@
                 <!-- form start -->
 
 
-                <form action="/superadmin/edit_account" method="post">
+                <form action="/superadmin/edit_account/{{ $user->id }}/update" method="POST">
                   @csrf
                   @method('PUT')
-                  <?php $i = 1; ?> @foreach($users as $user)
-                    <div class="card-body">
+{{-- 
+                   @foreach($users as $user)
+                     --}}
+                  <div class="card-body">
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nama</label>
-                          <input type="email" value="{{$user->name}}" class="form-control" id="exampleInputEmail1" placeholder="Nama">
+                          <label for="name">Nama</label>
+                          <input type="text" value="{{$user->name}}" class="form-control" id="name" name="name" placeholder="Nama">
                         </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input type="email" value="{{$user->email}}" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        <label for="email">Email</label>
+                        <input type="email" value="{{$user->email}}" name="email" class="form-control" id="email" name="email" placeholder="Email">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" name="password" placeholder="Password">
                       </div>
                       {{-- <div class="form-group">
                         <label for="exampleInputPassword1">Konfirmasi Password</label>
@@ -87,7 +89,7 @@
                      <!-- /.form-group -->
                 <div class="form-group">
                     <label>Level</label>
-                    <select class="form-control select2" name="type"  style="width: 100%;">
+                    <select class="form-control select2" name="type"id="type" style="width: 100%;">
                       <option selected="{{$user->type}}">Level</option>
                       <option value="1">Admin</option>
                       <option value="0">Mahasiswa</option>
@@ -108,7 +110,7 @@
     
                     <div class="card-footer">
                       <button type="submit" class="btn btn-primary">Submit</button>
-                      @endforeach
+                      {{-- @endforeach --}}
                     </div>
                   </form>
                 </div>

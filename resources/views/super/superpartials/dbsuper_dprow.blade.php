@@ -20,20 +20,21 @@
                   <td>{{$laporan->isi}}</td>
                   <td>{{$laporan->gambar}}</td>
                   <td><span class="tag tag-success">  
+                    {{-- {{$laporan->bidang}} --}}
                     @if ($laporan->bidang==0)
-                    Umum
+                    Kemahasisaan
                     @elseif ($laporan->bidang==1)
-                    Kemahasiswaan
-                    @elseif ($laporan->bidang==2)
                     Akademik
+                    @elseif ($laporan->bidang==2)
+                    Keamanan
                     @elseif ($laporan->bidang==3)
-                    Kemanan
+                    Sarana Prasarana
                     @elseif ($laporan->bidang==4)
-                    Sarana Pra Sarana
-                     @else
                     Keuangan
-                  
-                    @endif</td>
+                     @elseif ($laporan->bidang==5)
+                     umum
+                    @endif
+                  </td>
                     
                   </span>
                   <td>
@@ -45,7 +46,7 @@
               </td>
                   <td>Diterima</td>
                   <td>
-                    <a href="/kemahasiswaan/detail">Detail</a> 
+                    <a href="/superadmin/detail">Detail</a> 
                     
                   </td>
             

@@ -10,6 +10,16 @@ class Laporan extends Model
     protected $table ="Laporan";
     protected $primaryKey = "id";
     protected $fillable = [
-        'id','jenis', 'id_level', 'isi'
+        'id',
+        'jenis',
+        'bidang',
+        'isi',
+        'gambar'
     ];
+    // protected function jenis(): Attribute
+    // {
+    //     return new Attribute( get: fn ($value) => ["pengaduan","aspirasi"][$value],
+    //     //return new Attribute( get: fn ($value) => ['0', '1', '2', '3', '4', '5'][$value],
+    //     );
+    // }
 }

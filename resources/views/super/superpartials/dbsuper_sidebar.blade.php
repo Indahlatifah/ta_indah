@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/laporan/pengaduan" class="nav-link">
+            <a href="/laporan/create_laporan" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                Laporan
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/superadmin/admincontrol" class="nav-link ">
+            <a href="/superadmin/admincontrol/listuser" class="nav-link ">
               <i class="nav-icon fas fa-file"></i>
               <p>
                 Daftar Akun
