@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class MahasiswaController 
@@ -37,4 +38,30 @@ class MahasiswaController
             'title' => 'Edit Profil'
         ]);
     }
+    public function createmhs()
+    {
+        return view('mhs.pengaduan');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storemhs(Request $request)
+    {
+        // dd($request->all());
+       Laporan::create([
+            'jenis' => $request -> jenis,
+            'bidang' => $request -> bidang,
+            'isi' => $request -> isi,
+            'gambar' => $request -> gambar,
+        
+        ]);
+     
+        $laporan=Laporan::all(); //pemanggilan data -- pake DB::table() bisa juga
+        return view('mhs.mhsdb');
+        }
+
 }

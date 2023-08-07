@@ -15,6 +15,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\UmumController;
 use App\Http\Controllers\UserController;
 use App\Models\Laporan;
+use App\Models\Mahasiswa;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -137,6 +138,10 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function ()
     Route::get('/superadmin/edit_account/{user}', [DashboardController::class, 'editakun'])->name('superadmin.editaccount');
     // Route::get('/superadmin/editakun/{id_user}', [DashboardController::class, 'EditAkun'])->name('superadmin.editakun');
     Route::put('/superadmin/edit_account/{user}/update', [DashboardController::class, 'updateakun'])->name('superadmin.updateakun');
+    Route::get('/superadmin/delete/{id}', [DashboardController::class, 'delete'])->name('superadmin.delete');
+    Route::put('/superadmin/edit_profil/{user}/update', [DashboardController::class, 'updateprofil'])->name('superadmin.updateprofil');
+    Route::get('/superadmin/edit_profil/{user}', [DashboardController::class, 'editprofil'])->name('superadmin.editprofil');
+    // Route::get('/daftar/destroy/{id}', 'App\Http\Controllers\DaftarController@destroy');
     
     
 });
@@ -179,6 +184,7 @@ Route::middleware(['auth', 'user-access:sarpras'])->group(function ()
     Route::get('/sarpras/detail', [sarprasController::class, 'sarprasdtpengaduan'])->name('sarpras.dtpengaduan');
     Route::get('/sarpras/profil', [SarprasController::class, 'sarprasProfil'])->name('sarpras.profil');    
     Route::get('/sarpras/edit_profil', [SarprasController::class, 'sarprasEditprofil'])->name('sarpras.editprofil');
+    
 });
 
 Route::middleware(['auth', 'user-access:direksi'])->group(function () 
@@ -189,6 +195,7 @@ Route::middleware(['auth', 'user-access:direksi'])->group(function ()
     Route::get('/direksi/detail', [direksiController::class, 'direksidtpengaduan'])->name('direksi.dtpengaduan');
     Route::get('/direksi/profil', [DireksiController::class, 'direksiProfil'])->name('direksi.profil');    
     Route::get('/direksi/edit_profil', [DireksiController::class, 'direksiEditprofil'])->name('direksi.editprofil');
+    
 });
 Route::middleware(['auth', 'user-access:keuangan'])->group(function () 
 {
@@ -211,8 +218,11 @@ Route::middleware(['auth', 'user-access:umum'])->group(function ()
 /*---------------*/
 Route::get('/laporan/pengaduan', [LaporanController::class, 'index']);
 Route::get('/laporan/create_laporan', [LaporanController::class, 'create']);
+Route::get('/mahasiswa/create_laporan/mhs', [MahasiswaController::class, 'createmhs']);
 Route::post('/laporan/simpan', [LaporanController::class, 'store'])->name('store');
+Route::post('/mahasiswa/simpan/mhs', [MahasiswaController::class, 'storemhs'])->name('storemhs');
 Route::get('superadmin/pengaduan', [LaporanController::class, 'read'])->name('read');
+Route::get('direksi/pengaduan', [LaporanController::class, 'readdireksi'])->name('readdireksi');
 /*Logout*/
 Route::get('/logout', [LoginController::class, 'logout']);  
 /*Logout*/

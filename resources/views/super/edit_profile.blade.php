@@ -57,36 +57,46 @@
               <!-- Profile Image -->
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
+
+
+                  
+
                   <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle"
                          src="{{ asset('template/dist/img/user4-128x128.jpg')}}"
                          alt="User profile picture">
                   </div>
   
-                  <h3 class="profile-username text-center">Indah Latifah</h3>
+                  <h3 class="profile-username text-center">Indah</h3>
   
-                  <p class="text-muted text-center">Mahasiswa</p>
-  
+                  <p class="text-muted text-center">Mahasiswa</p>          
+                
+                  <form action="/superadmin/edit_profil/{{ $user->id }}/update" method="POST">
+                    @csrf
+                    @method('PUT')
+
                   <div class="card-body">
                     <div class="form-group">
+                    
                       <label for="exampleInputEmail1">Nama</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nama">
+                      <input type="name" value="{{$user->name}}" class="form-control" id="name" placeholder="Name">
                     </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Username</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Username">
+                    <input type="email" {{$user->email}} class="form-control" id="email" placeholder="Email">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Konfirmasi Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
   
-                  <a href="#" class="btn btn-primary btn-block"><b>Ubah</b></a>
+                  <button type="submit" class="btn btn-primary">Ubah</button>
+                  {{-- <a href="/superadmin/edit_profil/" class="btn btn-primary btn-block"><b>Ubah</b></a> --}}
+            
                 </div>
+          
+                  </form>
+              
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->

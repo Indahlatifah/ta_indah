@@ -52,4 +52,11 @@ class DireksiController
             'title' => 'Edit Profil'
         ]);
     }
+   
+    public function readdireksi()
+    {
+       $laporan = DB::table('laporan') -> get();
+       return view('direksi.pengaduan', ['laporan' => $laporan]);
+   
+   }
 }

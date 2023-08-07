@@ -61,8 +61,11 @@
                 @endif
               </span></td>
               <td>
-                <a href="/superadmin/edit_account/{{ $user->id }}">Edit</a> |
-                <a href="#">Delete</a>
+                <a href="/superadmin/edit_account/{{ $user->id }}" class="btn btn-xs btn-success">Edit</a> 
+                @csrf
+                @method('DELETE')
+                <a href="/superadmin/delete/{{ $user->id }}" class="btn btn-xs btn-danger" onclick="return confirm('yakin?');">Delete</a>
+</td>
               </td>
             </tr>
             @endforeach
