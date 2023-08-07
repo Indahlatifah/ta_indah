@@ -167,7 +167,63 @@ public function updateakun(Request $request, User $user)
 
     $user->save();
 
-    return redirect('superadmin/admincontrol/listuser')->with('succes','Siswa Berhasil di Update');
+    return redirect('superadmin/admincontrol/listuser')->with('success','Siswa Berhasil di Update');
+    // return back();
+}
+            public function delete($id)
+            {
+
+                $user = user::find($id);
+                
+                $user->delete();
+                
+        // if ($user) {
+        //     return redirect()
+        //         ->route('superadmin/admincontrol/listuser')
+        //         ->with([
+        //             'success' => 'user has been deleted successfully'
+        //         ]);
+        // } else {
+        //     return redirect()
+        //         ->route('superadmin/admincontrol/listuser')
+        //         ->with([
+        //             'error' => 'Some problem has occurred, please try again'
+        //         ]);
+            // DB::table('users')->where('id', $id)->delete();
+            
+            return redirect('superadmin/admincontrol/listuser')->with('status', 'Data  Berhasil DiHapus');
+            }
+
+
+
+            /// edit profile
+            
+            public function editprofil(User $user)
+            {
+                // $user = User::find($user)->get();
+                // $user = DB::table('users')->where('id', $user)->first();
+                // dd($user);
+                
+                return view('super.edit_profile', compact('user'));
+            }
+            public function updateprofil(Request $request, User $user)
+            {
+                   $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'password' => 'required',
+                   
+                ]);
+    
+                $user->name = request('name');
+                $user->email = request('email');
+                $user->password = bcrypt(request('password'));
+                $user->save();
+
+    return redirect('/superadmin/edit_profilr')->with('success','Data Berhasil di Update');
     // return back();
 }
 }
+
+
+

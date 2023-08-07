@@ -48,7 +48,8 @@ class LaporanController
         $laporan= Laporan::all(); //pemanggilan data -- pake DB::table() bisa juga
         return view('super.pengaduan', compact('laporan'));
         }
-    
+
+       
         public function read()
         {
            $laporan = DB::table('laporan') -> get();
