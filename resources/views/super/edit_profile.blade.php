@@ -17,7 +17,7 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-  
+
  <!-- notif -->
  @include('super.superpartials.dbsuper_notif')
  <!-- /.notif -->
@@ -25,7 +25,7 @@
   <!-- Sidebar Menu -->
   @include('super.superpartials.dbsuper_sidebar')
   <!-- /.sidebar -->
-     
+
 
   </aside>
 
@@ -53,55 +53,81 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-4">
-  
+
               <!-- Profile Image -->
               <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
 
 
-                  
+
 
                   <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle"
                          src="{{ asset('template/dist/img/user4-128x128.jpg')}}"
                          alt="User profile picture">
                   </div>
-  
-                  <h3 class="profile-username text-center">Indah</h3>
-  
-                  <p class="text-muted text-center">Mahasiswa</p>          
-                
+
+                  <h3 class="profile-username text-center">{{ $user->name }}</h3>
+
+                  <p class="text-muted text-center">
+                    @php
+                        $dtRole = DB::table('users')->where('id', Auth::user()->id ?? '')->select('users.*', 'id', 'type')->first();
+                        // dd($dtRole->);
+                    @endphp
+
+                    {{-- {{ $dtRole->type }} --}}
+                    @if ($dtRole->type==8)
+                    Umum
+                    @elseif ($dtRole->type==1)
+                    Admin
+                    @elseif ($dtRole->type==2)
+                    Kemahasiswaan
+                    @elseif ($dtRole->type==3)
+                    Akademik
+                    @elseif ($dtRole->type==4)
+                    Kemanan
+                    @elseif ($dtRole->type==5)
+                    Sarana Pra Sarana
+                    @elseif ($dtRole->type==6)
+                    Direksi
+                    @elseif ($dtRole->type==7)
+                    Keuangan
+                    @elseif ($dtRole->type==0)
+                    Mahasiswa
+                    @endif
+                  </p>
+
                   <form action="/superadmin/edit_profil/{{ $user->id }}/update" method="POST">
                     @csrf
                     @method('PUT')
 
                   <div class="card-body">
                     <div class="form-group">
-                    
-                      <label for="exampleInputEmail1">Nama</label>
-                      <input type="name" value="{{$user->name}}" class="form-control" id="name" placeholder="Name">
+
+                      <label for="name">Nama</label>
+                      <input type="name" value="{{$user->name}}" class="form-control" name="name" id="name" placeholder="Name">
                     </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Username</label>
-                    <input type="email" {{$user->email}} class="form-control" id="email" placeholder="Email">
+                    <label for="email">Username</label>
+                    <input type="email" value="{{$user->email}}" class="form-control" name="email" id="email" placeholder="Email">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                   </div>
-  
+
                   <button type="submit" class="btn btn-primary">Ubah</button>
                   {{-- <a href="/superadmin/edit_profil/" class="btn btn-primary btn-block"><b>Ubah</b></a> --}}
-            
+
                 </div>
-          
+
                   </form>
-              
+
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
 
-             
+
       <!-- /.card -->
     </div>
   </div>

@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class DashboardController 
+class DashboardController
 {
     //
     public function index()
     {
-        //return view::make('pages.index', array('title' => 'Title'));   
-        return view('dashboard', 
+        //return view::make('pages.index', array('title' => 'Title'));
+        return view('dashboard',
             [
                 'title' => 'DB_Mahasiswa'
             ]);
-    } 
+    }
 
     /**
      * Show the application dashboard.
@@ -70,11 +71,14 @@ class DashboardController
         ]);
     }
 
-    public function SuperProfil()
+    public function SuperProfil(User $user)
     {
+        $user = User::find(Auth::user()->id)->first();
+
         return view('super.profile',
         [
-            'title' => 'Profil'
+            'title' => 'Profil',
+            'user' => $user,
         ]);
     }
 
@@ -106,7 +110,7 @@ class DashboardController
     // {
     //     return view('super.create_account');
     // }
- 
+
     public function Supercreate_user(Request $request)
     {
         User::create([
@@ -137,7 +141,7 @@ public function editakun(User $user)
     // $user = User::find($user)->get();
     // $user = DB::table('users')->where('id', $user)->first();
     // dd($user);
-    
+
     return view('super.edit_account', compact('user'));
 }
 
@@ -153,7 +157,7 @@ public function updateakun(Request $request, User $user)
         'password' => 'required',
         'type' => 'required',
     ]);
-    
+
     // $attr = $request->all();
     // $user->update($attr);
     // $user->save($request->all());
@@ -174,9 +178,9 @@ public function updateakun(Request $request, User $user)
             {
 
                 $user = user::find($id);
-                
+
                 $user->delete();
-                
+
         // if ($user) {
         //     return redirect()
         //         ->route('superadmin/admincontrol/listuser')
@@ -190,37 +194,38 @@ public function updateakun(Request $request, User $user)
         //             'error' => 'Some problem has occurred, please try again'
         //         ]);
             // DB::table('users')->where('id', $id)->delete();
-            
+
             return redirect('superadmin/admincontrol/listuser')->with('status', 'Data  Berhasil DiHapus');
             }
 
 
 
             /// edit profile
-            
+
             public function editprofil(User $user)
             {
                 // $user = User::find($user)->get();
                 // $user = DB::table('users')->where('id', $user)->first();
                 // dd($user);
-                
+
                 return view('super.edit_profile', compact('user'));
             }
+
             public function updateprofil(Request $request, User $user)
             {
                    $request->validate([
                     'name' => 'required',
                     'email' => 'required',
                     'password' => 'required',
-                   
+
                 ]);
-    
+
                 $user->name = request('name');
                 $user->email = request('email');
                 $user->password = bcrypt(request('password'));
                 $user->save();
 
-    return redirect('/superadmin/edit_profilr')->with('success','Data Berhasil di Update');
+    return redirect('/superadmin/profil')->with('success','Data Berhasil di Update');
     // return back();
 }
 }

@@ -52,7 +52,7 @@ class User extends Authenticatable
      */
     protected function type(): Attribute
     {
-        return new Attribute( get: fn ($value) => ["mahasiswa", "superadmin", "kemahasiswaan", "akademik", "kamsisdal", "sarpras", "direksi", "keuangan", "umum",][$value],
+        return new Attribute( get: fn ($value) => ["mahasiswa", "superadmin", "kemahasiswaan", "akademik", "kamsisdal", "sarpras", "direksi", "keuangan", "umum",][$value]
         //return new Attribute( get: fn ($value) => ['0', '1', '2', '3', '4', '5'][$value],
         );
     }
