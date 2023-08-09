@@ -223,6 +223,8 @@ Route::post('/laporan/simpan', [LaporanController::class, 'store'])->name('store
 Route::post('/mahasiswa/simpan/mhs', [MahasiswaController::class, 'storemhs'])->name('storemhs');
 Route::get('superadmin/pengaduan', [LaporanController::class, 'read'])->name('read');
 Route::get('direksi/pengaduan', [LaporanController::class, 'readdireksi'])->name('readdireksi');
+Route::get('/upload', [LaporanController::class, 'upload']);
+Route::post('/upload/proses', [LaporanController::class 'proses_upload']);
 /*Logout*/
 Route::get('/logout', [LoginController::class, 'logout']);
 /*Logout*/
