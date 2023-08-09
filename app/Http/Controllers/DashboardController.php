@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class DashboardController
+class DashboardController 
+
 {
     //
     public function index()
@@ -86,7 +87,7 @@ class DashboardController
     {
         return view('super.edit_profile',
         [
-            'title' => 'Edit Profil'
+            'title' => 'Edit Profil',
         ]);
     }
 
@@ -114,34 +115,31 @@ class DashboardController
     public function Supercreate_user(Request $request)
     {
         User::create([
-        'name' => $request -> name,
-        'email' => $request -> email,
-        'password' => bcrypt($request->password),
-        'type' => $request -> type,
-        'remember_token' => Str::random(60),
-      ]);
-    //   return
-    // $users = User::all(); //pemanggilan data -- pake DB::table() bisa juga
-    $users = DB::table('users') -> get();
-    return view('super.admin_control', compact('users'));
-    // return redirect('superadmin/admincontrol/listuser');
+            'name' => $request -> name,
+            'email' => $request -> email,
+            'password' => bcrypt($request->password),
+            'type' => $request -> type,
+            'remember_token' => Str::random(60),
+          ]);
+        //   return
+        // $users = User::all(); //pemanggilan data -- pake DB::table() bisa juga
+        $users = DB::table('users') -> get();
+        return view('super.admin_control', compact('users'));
+        // return redirect('superadmin/admincontrol/listuser');
+        }
+     public function Super_read()
+     {
+        // $users = User::all();
+        $users = DB::table('users') -> get();
+        return view('super.admin_control', ['users' => $users]);
+        // return redirect('superadmin/admincontrol/listuser', ['users' => $users]);
     }
-
- public function Super_read()
- {
-    // $users = User::all();
-    $users = DB::table('users') -> get();
-    return view('super.admin_control', ['users' => $users]);
-    // return redirect('superadmin/admincontrol/listuser', ['users' => $users]);
-
-}
-
-public function editakun(User $user)
-{
+    public function editakun(User $user)
+    {
     // $user = User::find($user)->get();
     // $user = DB::table('users')->where('id', $user)->first();
     // dd($user);
-
+    
     return view('super.edit_account', compact('user'));
 }
 
@@ -162,7 +160,7 @@ public function updateakun(Request $request, User $user)
     // $user->update($attr);
     // $user->save($request->all());
 
-    // dd($user);
+     // dd($user);
     // return view('super.admin_control', compact('users'));
     $user->name = request('name');
     $user->email = request('email');
@@ -225,8 +223,7 @@ public function updateakun(Request $request, User $user)
                 $user->password = bcrypt(request('password'));
                 $user->save();
 
-    return redirect('/superadmin/profil')->with('success','Data Berhasil di Update');
-    // return back();
+                   return redirect('/superadmin/profil')->with('success','Data Berhasil di Update');
 }
 }
 

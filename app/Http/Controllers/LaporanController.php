@@ -36,15 +36,23 @@ class LaporanController
      */
     public function store(Request $request)
     {
+
+        // return $request->file('gambar')->store('post-images');
         // dd($request->all());
         Laporan::create([
             'jenis' => $request -> jenis,
             'bidang' => $request -> bidang,
             'isi' => $request -> isi,
-            'gambar' => $request -> gambar,
-
-
+            'image' => 'image|file|max:4024',
+            
         ]);
+        if ($request->file('image')) {
+            $validateData['image'] = $request->file('image')->store
+            ('public/images');
+        }
+        
+        // User:: create($validateData);
+
         $laporan= Laporan::all(); //pemanggilan data -- pake DB::table() bisa juga
         return view('super.pengaduan', compact('laporan'));
         }

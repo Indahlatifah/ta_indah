@@ -54,7 +54,7 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <form action="/laporan/simpan" method="POST">
+            <form action="/laporan/simpan" method="POST" enctype="multipart/form-data">
              @csrf
               <select name="bidang" class="form-select mb-4" aria-label="bidang">
                 <option selected>Pilih bidang tujuan</option>
@@ -80,7 +80,7 @@
               </div> --}}
                 <div class="form-group">
                 <label >Gambar</label>
-                <input name="gambar" class="form-control" >
+                <input type="file" name="image" class="form-control" >
               </div>
               {{-- <div class="input-group">
                 <div class="custom-file">

@@ -29,7 +29,7 @@
 
   </aside>
 
-   <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -66,7 +66,7 @@
                          src="{{ asset('template/dist/img/user4-128x128.jpg')}}"
                          alt="User profile picture">
                   </div>
-
+               
                   <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
                   <p class="text-muted text-center">
@@ -104,6 +104,7 @@
                   <div class="card-body">
                     <div class="form-group">
 
+                     
                       <label for="name">Nama</label>
                       <input type="name" value="{{$user->name}}" class="form-control" name="name" id="name" placeholder="Name">
                     </div>
@@ -131,18 +132,16 @@
       <!-- /.card -->
     </div>
   </div>
-  <!-- /.row -->
+ <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
     </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
 <!-- footer -->
 @include('super.superpartials.footer')
 <!-- /.footer -->
-
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->

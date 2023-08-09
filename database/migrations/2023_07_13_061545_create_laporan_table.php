@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('jenis', ['1', '2']);
             $table->enum('bidang',['0','1','2','3','4','5']);
             $table->text('isi');
-            $table->string('gambar')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

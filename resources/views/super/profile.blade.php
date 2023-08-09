@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin</title>
-
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -18,6 +17,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
       <!-- notif -->
+      <!-- notif -->
       @include('super.superpartials.dbsuper_notif')
       <!-- /.notif -->
 
@@ -30,7 +30,7 @@
     <!-- /.sidebar -->
   </aside>
 
-
+  
    <!-- Content Wrapper. Contains page content -->
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -67,34 +67,34 @@
 
                   <h3 class="profile-username text-center">{{ $user->name }}</h3>
 
-                    <p class="text-muted text-center">
-                        @php
-                            $dtRole = DB::table('users')->where('id', Auth::user()->id ?? '')->select('users.*', 'id', 'type')->first();
-                            // dd($dtRole->);
-                        @endphp
+                  <p class="text-muted text-center">
+                      @php
+                          $dtRole = DB::table('users')->where('id', Auth::user()->id ?? '')->select('users.*', 'id', 'type')->first();
+                          // dd($dtRole->);
+                      @endphp
 
-                        {{-- {{ $dtRole->type }} --}}
-                        @if ($dtRole->type==8)
-                        Umum
-                        @elseif ($dtRole->type==1)
-                        Admin
-                        @elseif ($dtRole->type==2)
-                        Kemahasiswaan
-                        @elseif ($dtRole->type==3)
-                        Akademik
-                        @elseif ($dtRole->type==4)
-                        Kemanan
-                        @elseif ($dtRole->type==5)
-                        Sarana Pra Sarana
-                        @elseif ($dtRole->type==6)
-                        Direksi
-                        @elseif ($dtRole->type==7)
-                        Keuangan
-                        @elseif ($dtRole->type==0)
-                        Mahasiswa
-                        @endif
-                    </p>
-
+                      {{-- {{ $dtRole->type }} --}}
+                      @if ($dtRole->type==8)
+                      Umum
+                      @elseif ($dtRole->type==1)
+                      Admin
+                      @elseif ($dtRole->type==2)
+                      Kemahasiswaan
+                      @elseif ($dtRole->type==3)
+                      Akademik
+                      @elseif ($dtRole->type==4)
+                      Kemanan
+                      @elseif ($dtRole->type==5)
+                      Sarana Pra Sarana
+                      @elseif ($dtRole->type==6)
+                      Direksi
+                      @elseif ($dtRole->type==7)
+                      Keuangan
+                      @elseif ($dtRole->type==0)
+                      Mahasiswa
+                      @endif
+                  </p>
+                        
                   <ul class="list-group list-group-unbordered mb-3">
                     <li class="list-group-item">
                       <b>Nama</b> <a class="float-right">{{ $user->name }}</a>
