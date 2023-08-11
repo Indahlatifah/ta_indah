@@ -15,11 +15,16 @@ return new class extends Migration
     {
         Schema::create('laporan', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');  
             $table->enum('jenis', ['1', '2']);
             $table->enum('bidang',['0','1','2','3','4','5']);
             $table->text('isi');
             $table->string('image')->nullable();
+            $table->enum('status',['diterima', 'ditolak'])->nullable();
+            $table->text('tanggapan')->nullable();
             $table->timestamps();
+
         });
     }
 

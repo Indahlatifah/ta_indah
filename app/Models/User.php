@@ -14,6 +14,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
     protected $fillable = [
         'name',
         'email',
@@ -49,4 +50,5 @@ class User extends Authenticatable
         //return new Attribute( get: fn ($value) => ['0', '1', '2', '3', '4', '5'][$value],
         );
     }
+    // $users = User::paginate(10);
 }

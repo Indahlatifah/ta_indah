@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Laporan;
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController 
 {
@@ -63,5 +66,31 @@ class MahasiswaController
         $laporan=Laporan::all(); //pemanggilan data -- pake DB::table() bisa juga
         return view('mhs.mhsdb');
         }
+
+         public function editprofil(User $user)
+            {
+                // $user = User::find($user)->get();
+                // $user = DB::table('users')->where('id', $user)->first();
+                // dd($user);
+
+                return view('mhs.edit_profile', compact('user'));
+            }
+
+            public function updateprofil(Request $request, User $user)
+            {
+                   $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'password' => 'required',
+
+                ]);
+
+                $user->name = request('name');
+                $user->email = request('email');
+                $user->password = bcrypt(request('password'));
+                $user->save();
+
+                   return redirect('/mhs/profil')->with('success','Data Berhasil di Update');
+}
 
 }

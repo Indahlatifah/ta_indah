@@ -11,10 +11,13 @@ class Laporan extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         'id',
+        'id_user',
         'jenis',
         'bidang',
         'isi',
-        'gambar'
+        'gambar',
+        'status',
+        'tanggapan'
     ];
     // protected function jenis(): Attribute
     // {

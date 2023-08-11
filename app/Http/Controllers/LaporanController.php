@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Laporan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanController
 {
-    /**
+    /**s
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     return view('laporan.pengaduan', ['laporan' => DB::table('laporan')->paginate(15)]);
+        
+    // }
     public function index()
-    {
-        return view('laporan.pengaduan');
-    }
+{
+    $laporan = Laporan::all();
+
+    return view('super.pengaduan', compact('allLaporan'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -25,7 +34,9 @@ class LaporanController
      */
     public function create()
     {
+        // $laporan = Auth::user()->id;
         return view('laporan.create_laporan');
+    
     }
 
     /**
@@ -34,28 +45,48 @@ class LaporanController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+   
     public function store(Request $request)
     {
-
-        // return $request->file('gambar')->store('post-images');
-        // dd($request->all());
-        Laporan::create([
-            'jenis' => $request -> jenis,
-            'bidang' => $request -> bidang,
-            'isi' => $request -> isi,
-            'image' => 'image|file|max:4024',
-            
+        $request->validate([
+            // Definisi validasi untuk setiap field (jika perlu)
         ]);
-        if ($request->file('image')) {
-            $validateData['image'] = $request->file('image')->store
-            ('public/images');
-        }
         
-        // User:: create($validateData);
-
-        $laporan= Laporan::all(); //pemanggilan data -- pake DB::table() bisa juga
-        return view('super.pengaduan', compact('laporan'));
+      
+        $laporan = Laporan::create([
+                'id_user' => Auth::user()->id,
+                'bidang' => $request->bidang,
+                'jenis' => $request->jenis,
+                'isi' => $request -> isi,
+                'tanggapan' => $request ->tanggapan,
+                'status' => $request ->status,
+    //             // 'image' => $request-> image,
+                
+            ]);
+        // Cek apakah ada file gambar yang di-upload
+        if ($request->hasFile('image')) {
+            $imagePath = 'image/';
+            $imageName = $request->file('image')->getClientOriginalName();
+            $request->file('image')->move($imagePath, $imageName);
+            $laporan->image = $imageName;
+            $laporan->save();
         }
+    
+        // Ambil semua data laporan setelah penambahan
+        $laporan = Laporan::all();
+    
+        return view('super.pengaduan', compact('laporan'));
+    }
+        // if($request->hasFile('image')){
+        //     $request->file('image')->move('image/', $request->file('image')->getClientOriginalName());
+        //     $laporan->image = $request->file('image')->getClientOriginalName();
+        //     $laporan->save();
+        // }
+
+      
+        // $laporan= Laporan::all(); //pemanggilan data -- pake DB::table() bisa juga
+        // return view('super.pengaduan', compact('laporan'));
+        // }
 
        
         public function read()

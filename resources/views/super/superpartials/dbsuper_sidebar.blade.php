@@ -79,14 +79,14 @@
           $dtRole = DB::table('users')->where('id', Auth::user()->id ?? '')->select('users.*', 'id', 'type')->first();
           // dd($dtRole->);
       @endphp --}}
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="/superadmin/edit_profil/" class="nav-link">
               <i class="nav-icon fa fa-cogs" aria-hidden="true"></i>
               <p>
                 Edit profil
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="/logout" class="nav-link">
               <i class="nav-icon fa  fa-reply"></i>

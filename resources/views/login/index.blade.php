@@ -1,15 +1,15 @@
-@extends('layouts.main')
+@extends('layouts.main2')
 
 <body data-spy="scroll" data-target=".fixed-top">
     
     <!-- Preloader -->
-	<div class="spinner-wrapper">
+	{{-- <div class="spinner-wrapper">
         <div class="spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
             <div class="bounce3"></div>
         </div>
-    </div>
+    </div> --}}
     <!-- end of preloader -->
     
 
@@ -24,7 +24,7 @@
                     <br/>
 
                         <!--Pesan Error-->
-                         @if(session()->has('loginError'))
+                          @if(session()->has('loginError'))
                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                              {{ session('loginError') }}
                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">  
@@ -78,3 +78,49 @@
     <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="js/scripts.js"></script> <!-- Custom scripts -->
 </body>
+
+
+{{-- 
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login Form Design | CodeLab</title>
+      <link rel="stylesheet" href="{{ asset('css/stylelogin.css') }}">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title">
+            Login Form
+         </div>
+         <form method="POST" action="{{ route('login') }}">
+            @csrf
+         <form action="#">
+            <div class="field">
+               <input type="text" required>
+               <label>Email Address</label>
+            </div>
+            <div class="field">
+               <input type="password" required>
+               <label>Password</label>
+            </div>
+            <div class="content">
+               <div class="checkbox">
+                  <input type="checkbox" id="remember-me">
+                  <label for="remember-me">Remember me</label>
+               </div>
+               <div class="pass-link">
+                  <a href="#">Forgot password?</a>
+               </div>
+            </div>
+            <div class="field">
+               <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">
+               Not a member? <a href="#">Signup now</a>
+            </div>
+         </form>
+      </div>
+   </body>
+</html> --}}

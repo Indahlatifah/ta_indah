@@ -7,14 +7,14 @@
        <a button type="button" href="/superadmin/buatakun" class="btn btn-primary float-right ml-4"><i class="fas fa-plus"></i> Buat Akun</a></button></a>
         <div class="card-tools">
           <div class="input-group input-group-sm mt-1 mb-1" style="width: 250px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
+            <form action="/superadmin/cari" method="GET">
+              <input type="text" name="cari" class="form-control float-right" value="{{ old('cari') }}" placeholder="Search">
             <div class="input-group-append">
-              <button type="submit" class="btn btn-default">
+              <button type="submit" value="cari" class="btn btn-default">
                 <i class="fas fa-search"></i>
               </button>
-              
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -70,6 +70,7 @@
             </tr>
             @endforeach
         </table>
+        {{-- {{ $user->links() }} --}}
       </div>
       <!-- /.card-body -->
     </div>

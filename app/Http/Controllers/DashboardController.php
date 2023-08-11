@@ -124,6 +124,7 @@ class DashboardController
         //   return
         // $users = User::all(); //pemanggilan data -- pake DB::table() bisa juga
         $users = DB::table('users') -> get();
+        // $users = DB::table('users')->simplePaginate(10);
         return view('super.admin_control', compact('users'));
         // return redirect('superadmin/admincontrol/listuser');
         }
@@ -225,6 +226,21 @@ public function updateakun(Request $request, User $user)
 
                    return redirect('/superadmin/profil')->with('success','Data Berhasil di Update');
 }
+
+public function cari(Request $request)
+	{
+		// menangkap data pencarian
+		$cari = $request->cari;
+ 
+    		// mengambil data dari table pegawai sesuai pencarian data
+		$users = DB::table('users')
+		->where('name','like',"%".$cari."%")
+		->paginate();
+ 
+    		// mengirim data users ke view index
+		return view('super.admin_control',['users' => $users]);
+ 
+	}
 }
 
 

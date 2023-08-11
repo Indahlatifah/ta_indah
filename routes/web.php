@@ -118,7 +118,9 @@ Route::middleware(['auth', 'user-access:mahasiswa'])->group(function ()
     Route::get('/mhs/mhsdb', [MahasiswaController::class, 'index'])->name('mhs.db');
     Route::get('/mahasiswa/pengaduan', [MahasiswaController::class, 'MhsPengaduan'])->name('mahasiswa.pengaduan');
     Route::get('/mahasiswa/profil', [MahasiswaController::class, 'MhsProfil'])->name('mahasiswa.profil');
-    Route::get('/mahasiswa/edit_profil', [MahasiswaController::class, 'MhsEditprofil'])->name('mahasiswa.editprofil');
+    // Route::get('/mahasiswa/edit_profil', [MahasiswaController::class, 'MhsEditprofil'])->name('mahasiswa.editprofil');
+    Route::get('/mahasiswa/edit_profil/{user}', [MahasiswaController::class, 'editprofil'])->name('mahasiswa.editprofil');
+    Route::put('/mahasiswa/edit_profil/{user}/update', [MahasiswaController::class, 'updateprofil'])->name('mahasiswa.updateprofil');
 });
 
 Route::middleware(['auth', 'user-access:superadmin'])->group(function ()
@@ -142,6 +144,7 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function ()
     Route::get('/superadmin/edit_profil/{user}', [DashboardController::class, 'editprofil'])->name('superadmin.editprofil');
     Route::put('/superadmin/edit_profil/{user}/update', [DashboardController::class, 'updateprofil'])->name('superadmin.updateprofil');
     // Route::get('/daftar/destroy/{id}', 'App\Http\Controllers\DaftarController@destroy');
+    Route::get('/superadmin/cari', [DashboardController::class, 'cari'])->name('cari');
 
 
 });
@@ -224,7 +227,7 @@ Route::post('/mahasiswa/simpan/mhs', [MahasiswaController::class, 'storemhs'])->
 Route::get('superadmin/pengaduan', [LaporanController::class, 'read'])->name('read');
 Route::get('direksi/pengaduan', [LaporanController::class, 'readdireksi'])->name('readdireksi');
 Route::get('/upload', [LaporanController::class, 'upload']);
-Route::post('/upload/proses', [LaporanController::class 'proses_upload']);
+Route::post('/upload/proses', [LaporanController::class, 'proses_upload']);
 /*Logout*/
 Route::get('/logout', [LoginController::class, 'logout']);
 /*Logout*/
