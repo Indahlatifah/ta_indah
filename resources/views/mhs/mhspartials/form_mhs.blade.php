@@ -26,10 +26,7 @@
                   <label for="pesan" class="form-label">Tulis Pesan Anda Dibawah ini</label>
                   <textarea class="form-control" id="pesan" rows="3"></textarea>
                 </div>
-                <div class="mb-4 form-check">
-                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                  <label class="form-check-label" for="exampleCheck1">Rahasia</label>
-                </div>
+                
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>

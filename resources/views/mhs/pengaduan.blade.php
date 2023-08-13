@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kemahasiswaan</title>
+  <title>Mahasiswa</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -30,11 +30,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Pengaduan</h1>
+            <h1 class="m-0">Laporan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Halaman Pengaduan</li>
             </ol>
           </div><!-- /.col -->
@@ -42,63 +41,59 @@
       </div><!-- /.container-fluid -->
     </div>
    
-     <!-- /.navbar -->
-     <div id="features" class="tabs">
-      <section id="form">  
-          <div class="container">
-            <div class="row text-center">
-              <div class="col mb-4">
-                <h2 class="fw-bold"> Form Laporan </h2>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-md-8">
-                <form action="/mahasiswa/simpan/mhs" method="POST">
-                 @csrf
-                  <select name="bidang" class="form-select mb-4" aria-label="bidang">
-                    <option selected>Pilih bidang tujuan</option>
-                    <option value="0">Kemahasisaan</option>
-                    <option value="1">Akademik</option>
-                    <option value="2">Keamanan</option>
-                    <option value="3">Sarana Prasarana</option>
-                    <option value="4">Keuangan</option>
-                    <option value="5">umum</option>
-                  </select>
-                  <select name="jenis" class="form-select mb-4" aria-label="jenis_laporan">
-                    <option selected>Jenis Laporan</option>
-                    <option value="1">Pengaduan</option>
-                    <option value="2">Aspirasi</option>
-                  </select>
-                  <div class="form-group">
-                    <label >Pesan</label>
-                    <input name="isi" class="form-control" >
-                  </div>
-                  {{-- <div class="mb-4" >
-                    <label name="isi" for="pesan"  aria-label="isi" class="form-label">Tulis Pesan Anda Dibawah ini</label>
-                    <textarea class="form-control" id="isi" rows="3"></textarea>
-                  </div> --}}
-                    <div class="form-group">
-                    <label >Gambar</label>
-                    <input name="gambar" class="form-control" >
-                  </div>
-                  {{-- <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile">
-                      <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    </div></div> --}}
-                  <div class="mb-4 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Rahasia</label>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
+     {{-- form --}}
+<div id="features" class="tabs">
+  <section id="form">  
+      <div class="container">
+        <div class="row text-center">
+          <div class="col mb-4">
+            <h2 class="fw-bold"> Form Laporan </h2>
           </div>
-           </section>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <form action="/laporan/simpan/mhs" method="POST" enctype="multipart/form-data">
+             @csrf
+              <select name="bidang" class="form-select mb-4" aria-label="bidang">
+                <option selected>Pilih bidang tujuan</option>
+                <option value="0">Kemahasisaan</option>
+                <option value="1">Akademik</option>
+                <option value="2">Keamanan</option>
+                <option value="3">Sarana Prasarana</option>
+                <option value="4">Keuangan</option>
+                <option value="5">umum</option>
+              </select>
+              <select name="jenis" class="form-select mb-4" aria-label="jenis_laporan">
+                <option selected>Jenis Laporan</option>
+                <option value="1">Pengaduan</option>
+                <option value="2">Aspirasi</option>
+              </select>
+              <div class="form-group">
+                <label >Pesan</label>
+                <input name="isi" class="form-control" >
+              </div>
+              {{-- <div class="mb-4" >
+                <label name="isi" for="pesan"  aria-label="isi" class="form-label">Tulis Pesan Anda Dibawah ini</label>
+                <textarea class="form-control" id="isi" rows="3"></textarea>
+              </div> --}}
+                <div class="form-group">
+                <label >Gambar</label>
+                <input type="file" name="image" class="form-control" >
+              </div>
+              {{-- <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="exampleInputFile">
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div></div> --}}
+            
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
-  <!-- Content Wrapper. Contains page content -->
-    
+       </section>
+  </div>
+          {{-- akhir form --}}
         <!-- /.card-body -->
       </div>
       <!-- /.card -->

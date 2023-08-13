@@ -35,12 +35,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Daftar Pengaduan</h1>
+            <h1 class="m-0">Daftar Laporan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Halaman Pengaduan</li>
+              
+              <li class="breadcrumb-item active">Daftar Laporan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -67,7 +67,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  {{-- {{ $allLaporan->links() }} --}}
     <!-- footer -->
     @include('super.superpartials.footer')
     <!-- /.footer -->

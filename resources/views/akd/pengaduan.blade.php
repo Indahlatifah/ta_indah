@@ -17,37 +17,44 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
- 
-   <!-- /.notif -->
+
+ <!-- notif -->
  @include('akd.akdpartials.dbakd_notif')
- <!-- Content Wrapper. Contains page content -->
+ <!-- /.notif -->
 
-  <!-- /.navbar -->
-  @include('akd.akdpartials.dbakd_sidebar')
+
+     <!-- Sidebar Menu -->
+     @include('akd.akdpartials.dbakd_sidebar')
+     <!-- /.sidebar -->
+  </aside>
+
    <!-- Content Wrapper. Contains page content -->
-
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Daftar Pengaduan</h1>
+            <h1 class="m-0">Daftar Laporan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Halaman Pengaduan</li>
+        
+              <li class="breadcrumb-item active">Halaman Laporan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
- 
-     <!-- /.navbar -->
-  @include('akd.akdpartials.dbakd_dprow')
-  <!-- Content Wrapper. Contains page content -->
+   
+        <!-- tabel pengaduan -->
+        @include('akd.akdpartials.dbakd_dprow')
+        <!-- /.tabel pengaduan -->
     
+       
+
+    
+        </div>
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
@@ -61,9 +68,11 @@
   </div>
   <!-- /.content-wrapper -->
 
- <!-- /.footer -->
- @include('akd.akdpartials.footer')
- <!-- footer -->
+    <!-- footer -->
+    @include('akd.akdpartials.footer')
+    <!-- /.footer -->
+ </aside>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

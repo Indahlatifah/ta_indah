@@ -1,33 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin</title>
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('template/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- IonIcons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('template/dist/css/adminlte.min.css') }}">
-</head>
-<body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
 
-  @include('super.superpartials.dbsuper_notif')
-  <!-- /.notif -->
-  
-       <!-- Sidebar Menu -->
-       @include('super.superpartials.dbsuper_sidebar')
-       <!-- /.sidebar -->
-  
-    </aside>
-  
-   <!-- Content Wrapper. Contains page content -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Admin</title>
+ 
+   <!-- Google Font: Source Sans Pro -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="{{asset('template/plugins/fontawesome-free/css/all.min.css')}}">
+   <!-- IonIcons -->
+   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   <!-- Theme style -->
+   <link rel="stylesheet" href="{{asset('template/dist/css/adminlte.min.css') }}">
+ </head>
+ <body class="hold-transition sidebar-mini">
+ <!-- Site wrapper -->
+ <div class="wrapper">
+ 
+   @include('super.superpartials.dbsuper_notif')
+   <!-- /.notif -->
+   
+   <!-- Sidebar Menu -->
+   @include('super.superpartials.dbsuper_sidebar')
+   <!-- /.sidebar -->
+   
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -38,99 +38,128 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Halaman Pengaduan</li>
+              {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
+              <li class="breadcrumb-item active">Halaman Detail Laporan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-   
-    <section class="content">
-        <div class="container-fluid">
-  
-          <!-- Timelime example  -->
+    
+<form action="/upload/proses/{{ $laporan->id}}/update" method="POST">
+  @csrf
+  @method('PUT')
+  <section class="content">
+      <div class="container-fluid">
+          <!-- Timeline example -->
           <div class="row">
-            <div class="col-md-12">
-              <!-- The time line -->
-              <div class="timeline">
-                <!-- timeline time label -->
-                <div class="time-label">
-                  <span class="bg-red">10 Feb. 2014</span>
-                </div>
-                <!-- /.timeline-label -->
-                <!-- timeline item -->
-                <div>
+              <div class="col-md-12">
+                  <!-- The timeline -->
+                  <div class="timeline">
+                      <!-- Timeline items -->
+                      <div class="time-label">
                   
-                  @foreach($laporan as $laporan)
-                  <i class="fas fa-user bg-green"></i>
-                  <div class="timeline-item">
-                    <span class="time"><i class="fas fa-clock"></i> 12:05</span>
-                    <h3 class="timeline-header"><a href="#">Laporan  </a>Pengaduan</h3>
-  
-                    <div class="timeline-body">
-                      {{$laporan->isi}}
-                      {{-- Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                      weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                      jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                      quora plaxo ideeli hulu weebly balihoo... --}}
-                    </div>
-                    <div class="form-floating">
-                      <label for="floatingTextarea2">Tanggapi</label>
-                      <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                    
-                    </div>
-                    <div class="timeline-footer">
-                      <a class="btn btn-primary btn-sm">Terima</a>
-                      <a class="btn btn-danger btn-sm">Tolak</a>
-                      <a class="btn btn-success btn-sm">Kirim</a>
-                    </div>
+                      </div>
+                      <div>
+                          <i class="fas fa-user bg-green"></i>
+                          <div class="timeline-item">
+                              <h3 class="timeline-header"><a href="#">Laporan Pengaduan</a></h3>
+                              <div class="timeline-body">
+                                  {{-- Tampilkan isi laporan berdasarkan ID pengguna di sini --}}
+                                 
+                                  @if ($laporan)
+                                  <p>Dibuat: {{ $laporan->created_at->format('l, d F Y - H:i:s') }}</p>
+                                      <p>Bidang: 
+
+                                      @if ($laporan->bidang == 0)
+                                        Kemahasisaan
+                                        @elseif ($laporan->bidang == 1)
+                                        Akademik
+                                        @elseif ($laporan->bidang == 2)
+                                        Keamanan
+                                        @elseif ($laporan->bidang == 3)
+                                        Sarana Prasarana
+                                        @elseif ($laporan->bidang == 4)
+                                        Keuangan
+                                        @elseif ($laporan->bidang == 5)
+                                        Umum
+                                        @endif
+
+                                      </p>
+                                      <p>Jenis: 
+                                        @if ($laporan->jenis == 1)
+                                        Pengaduan
+                                        @else
+                                        Aspirasi
+                                        @endif  
+                                      </p>
+                                      <p>Isi Laporan: {{ $laporan->isi }}</p>
+
+                                     
+                                      @if ($laporan->image)
+                                          <img src="{{ asset('image/' . $laporan->image) }}" style="width: 400px;"alt="Laporan Image">
+                                      @else
+                                          <p>Tidak ada gambar</p>
+                                      @endif
+                                  @else
+                                      <p>Laporan tidak ditemukan.</p>
+                                  @endif
+                                     
+                              </div>
+                              <div class="form-floating">
+                                  <label for="floatingTextarea2">Tanggapi</label>
+                                  <textarea class="form-control" placeholder="Leave a comment here"
+                                     name="tanggapan" id="floatingTextarea2" style="height: 100px"></textarea>
+                              </div>
+                              <div class="timeline-footer">
+                                <div>
+                                  <input type="radio" id="terima" name="status" value="diterima">
+                                  <label for="terima" class="">Terima</label>
+                              
+                                  <input type="radio" id="tolak" name="status" value="ditolak">
+                                  <label for="tolak" class="">Tolak</label>
+                              </div>
+                              <button type="submit" class="btn btn-success btn-sm">Kirim</button>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- END timeline items -->
                   </div>
-                </div>
-                @endforeach
-                <!-- END timeline item -->
-                <!-- timeline item -->
-              
-       
-        </div>
-        <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-    </div>
-  </div>
-  <!-- /.row -->
+              </div>
+          </div>
+          <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-    </div>
-    <!-- /.content -->
-  </div>
+  </section>
+</form>
+
   <!-- /.content-wrapper -->
-
+  
   <footer class="main-footer">
-    <strong>Copyright &copy; 2023<a href="https://adminlte.io"> Created with love</a> by </strong> Indah Latifah
+    <strong>&copy; 2023<a href="https://adminlte.io"> Created with love</a> by </strong> Indah Latifah
   </footer>
-
+  
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="{{asset('template/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('template/dist/js/adminlte.min.js')}}"></script>
-<!-- OPTIONAL SCRIPTS -->
-<script src="{{ asset('template/plugins/chart.js/Chart.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('template/dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset ('template/dist/js/pages/dashboard3.js')}}"></script>
-</body>
-</html>
-
-
+  </div>
+  <!-- ./wrapper -->
+  
+  <!-- jQuery -->
+  <script src="{{asset('template/plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{asset('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('template/dist/js/adminlte.min.js')}}"></script>
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="{{ asset('template/plugins/chart.js/Chart.min.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{ asset('template/dist/js/demo.js')}}"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="{{ asset ('template/dist/js/pages/dashboard3.js')}}"></script>
+  </body>
+  </html>
+  

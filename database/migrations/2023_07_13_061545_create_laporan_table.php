@@ -26,7 +26,16 @@ return new class extends Migration
             $table->timestamps();
 
         });
+        // $dataPengaduan = DB::table('laporan')
+        // ->select('bidang', DB::raw('count(*) as jumlah_pengaduan'))
+        // ->groupBy('bidang')
+        // ->get();
+
+        // foreach ($dataPengaduan as $item) {
+        //     echo "Bidang: " . $item->bidang . " - Jumlah Pengaduan: " . $item->jumlah_pengaduan . "<br>";
+        // }
     }
+
 
     /**
      * Reverse the migrations.

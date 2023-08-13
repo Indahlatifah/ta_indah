@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kemahasiswaan</title>
+  <title>Admin</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -30,12 +30,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Pengaduan</h1>
+            <h1 class="m-0">Laporan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Halaman Pengaduan</li>
+
+              <li class="breadcrumb-item active">Halaman Laporan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -87,10 +87,7 @@
                   <input type="file" class="custom-file-input" id="exampleInputFile">
                   <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div></div> --}}
-              <div class="mb-4 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Rahasia</label>
-              </div>
+            
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>

@@ -42,7 +42,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+      
               <li class="breadcrumb-item active">Profil</li>
             </ol>
           </div><!-- /.col -->
@@ -61,7 +61,7 @@
                 <div class="card-body box-profile">
                   <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle"
-                         src="{{ asset('template/dist/img/user4-128x128.jpg')}}"
+                                   src="{{ asset('image/ava.png')}}"
                          alt="User profile picture">
                   </div>
 

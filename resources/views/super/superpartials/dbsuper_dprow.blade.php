@@ -55,7 +55,7 @@
               </tbody>
             </table>
           </div> --}} 
-          <div class="card-body table-responsive p-0">
+          {{-- <div class="card-body table-responsive p-0">
             <table class="table table-head-fixed text-wrap">
                 <thead>
                     <tr>
@@ -69,7 +69,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
+             
                     @foreach($laporan as $laporan)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -98,13 +98,89 @@
                             @else
                             Aspirasi
                             @endif
-                        </td>
-                        <td>Diterima</td>
-                        <td>
-                            <a href="/superadmin/detail">Detail</a>
+                            <td>
+                              @if ($laporan->status == 'diterima')
+                                  Diterima
+                                  @elseif ($laporan->status == 'ditolak')
+                                  ditolak
+                              @else
+                                Menunggu Konfirmasi
+                              @endif
+                          </td>
+                  <td>
+                            <a href="/detail/tanggapan/{{ $laporan->id }}">Detail</a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
+        </div> --}}
+        <div class="card-body table-responsive p-0">
+          <table class="table table-head-fixed text-wrap">
+              <thead>
+                  <tr>
+                      <th>No</th>
+                      <th class="col-sm-3">Pesan</th>
+                      <th>Gambar</th>
+                      <th>Bidang</th>
+                      <th>Jenis</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <?php $i = 1; ?>
+                  @foreach($laporan as $laporanItem) <!-- Ubah variabel $laporan menjadi $laporanItem -->
+                  <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $laporanItem->isi }}</td>
+                      <td><img src="{{ asset('image/' . $laporanItem->image) }}" alt="" style="width: 80px;"></td>
+                      <td>
+                          <span class="tag tag-success">
+                              @if ($laporanItem->bidang == 0)
+                              Kemahasisaan
+                              @elseif ($laporanItem->bidang == 1)
+                              Akademik
+                              @elseif ($laporanItem->bidang == 2)
+                              Keamanan
+                              @elseif ($laporanItem->bidang == 3)
+                              Sarana Prasarana
+                              @elseif ($laporanItem->bidang == 4)
+                              Keuangan
+                              @elseif ($laporanItem->bidang == 5)
+                              Umum
+                              @endif
+                          </span>
+                      </td>
+                      <td>
+                          @if ($laporanItem->jenis == 1)
+                          Pengaduan
+                          @else
+                          Aspirasi
+                          @endif
+                      </td>
+                      <td>
+                          @if ($laporanItem->status == 'diterima')
+                          Diterima
+                          @elseif ($laporanItem->status == 'ditolak')
+                          Ditolak <!-- Ubah menjadi huruf besar -->
+                          @else
+                          Menunggu Konfirmasi
+                          @endif
+                      </td>
+                      <td>
+                          <a href="/detail/tanggapan/{{ $laporanItem->id }}">Detail</a>
+                      </td>
+                  </tr>
+                  @endforeach
+              </tbody>
+          </table>
+      </div>
+      <!-- Tampilkan tautan paginasi -->
+      {{-- <div class="pagination">
+        {{ $laporan->links() }}
+    </div>
+     --}}
+    
+    
+    

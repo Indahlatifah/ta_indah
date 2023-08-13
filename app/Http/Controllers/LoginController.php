@@ -73,9 +73,14 @@ class LoginController
 
                 return redirect()->route('umum.home');
 
-            }            
+            }          
+            // else if (auth()->user()->type == 'mahasiswa') {
+
+            //     return redirect()->route('mhs.db');
+
+            // }     
             else{
-                return redirect()->route('mhs.db');
+                return redirect()->route('mhs.mhsdb');
             }
         }
         return back()->with('loginError','Gagal Login!');

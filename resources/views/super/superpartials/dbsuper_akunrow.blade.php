@@ -7,15 +7,15 @@
        <a button type="button" href="/superadmin/buatakun" class="btn btn-primary float-right ml-4"><i class="fas fa-plus"></i> Buat Akun</a></button></a>
         <div class="card-tools">
           <div class="input-group input-group-sm mt-1 mb-1" style="width: 250px;">
-            <form action="/superadmin/cari" method="GET">
-              <input type="text" name="cari" class="form-control float-right" value="{{ old('cari') }}" placeholder="Search">
-            <div class="input-group-append">
-              <button type="submit" value="cari" class="btn btn-default">
-                <i class="fas fa-search"></i>
-              </button>
-              </div>
+            <form action="/superadmin/cari" method="GET" class="input-group">
+                <input type="text" name="cari" class="form-control" value="{{ old('cari') }}" placeholder="Search">
+                <div class="input-group-append">
+                    <button type="submit" value="cari" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </form>
-          </div>
+        </div>
         </div>
       </div>
       <!-- /.card-header -->

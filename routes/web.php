@@ -12,10 +12,12 @@ use App\Http\Controllers\DireksiController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\DataPengaduanController;
 use App\Http\Controllers\UmumController;
 use App\Http\Controllers\UserController;
 use App\Models\Laporan;
 use App\Models\Mahasiswa;
+
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -115,21 +117,23 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:mahasiswa'])->group(function ()
 {
-    Route::get('/mhs/mhsdb', [MahasiswaController::class, 'index'])->name('mhs.db');
+    Route::get('/mahasiswa/mhsdb', [MahasiswaController::class, 'index'])->name('mhs.mhsdb');
     Route::get('/mahasiswa/pengaduan', [MahasiswaController::class, 'MhsPengaduan'])->name('mahasiswa.pengaduan');
     Route::get('/mahasiswa/profil', [MahasiswaController::class, 'MhsProfil'])->name('mahasiswa.profil');
     // Route::get('/mahasiswa/edit_profil', [MahasiswaController::class, 'MhsEditprofil'])->name('mahasiswa.editprofil');
     Route::get('/mahasiswa/edit_profil/{user}', [MahasiswaController::class, 'editprofil'])->name('mahasiswa.editprofil');
     Route::put('/mahasiswa/edit_profil/{user}/update', [MahasiswaController::class, 'updateprofil'])->name('mahasiswa.updateprofil');
+    Route::get('/mahasiswa/detail/}', [MahasiswaController::class, 'detail'])->name('superadmin.dtpengaduan');
+    Route::get('/mahasiswa/detail/{id_user}', [MahasiswaController::class, 'readdetail']);
 });
 
 Route::middleware(['auth', 'user-access:superadmin'])->group(function ()
 {
-    Route::get('/superadmin/dashboard', [DashboardController::class, 'Superadmindb'])->name('superadmin.home');
+    Route::get('/superadmin/dashboard', [DataPengaduanController::class, 'index'])->name('superadmin.home');
     Route::get('/superadmin/daftarakun', [DashboardController::class, 'Superadmindpakun'])->name('superadmin.dpakun');
     Route::get('/superadmin/pengaduan', [DashboardController::class, 'SuperPengaduan'])->name('superadmin.pengaduan');
     Route::get('/superadmin/buatakun', [DashboardController::class, 'Supercracc'])->name('superadmin.buatakun');
-    Route::get('/superadmin/detail', [DashboardController::class, 'Superdtpengaduan'])->name('superadmin.dtpengaduan');
+    Route::get('/superadmin/detail/{id_user}', [DashboardController::class, 'Superdtpengaduan'])->name('superadmin.dtpengaduan');
     Route::get('/superadmin/edit', [DashboardController::class, 'SuperEdit'])->name('superadmin.edit');
     Route::get('/superadmin/profil', [DashboardController::class, 'SuperProfil'])->name('superadmin.profil');
     // Route::get('/superadmin/edit_profil', [DashboardController::class, 'SuperEditprofile'])->name('superadmin.editprofile');
@@ -166,7 +170,11 @@ Route::middleware(['auth', 'user-access:akademik'])->group(function ()
     Route::get('/akademik/buatakun', [AkademikController::class, 'Akdcracc'])->name('akademik.buatakun');
     Route::get('/akademik/detail', [AkademikController::class, 'Akddtpengaduan'])->name('akademik.dtpengaduan');
     Route::get('/akademik/profil', [AkademikController::class, 'AkdProfil'])->name('akademik.profil');
-    Route::get('/akademik/edit_profil', [AkademikController::class, 'AkdEditprofil'])->name('akademik.editprofil');
+    // Route::get('/akademik/edit_profil', [AkademikController::class, 'AkdEditprofil'])->name('akademik.editprofil');
+    Route::get('/akademik/edit_profil/{user}', [AkademikController::class, 'editprofil'])->name('akademik.editprofil');
+    Route::put('/akademik/edit_profil/{user}/update', [AkademikController::class, 'updateprofil'])->name('akademik.updateprofil');
+    Route::get('/akademik/detail/tanggapan/{id}', [AkademikController::class, 'edit']);
+    Route::put('/upload/proses/{id}/update/akd', [AkademikController::class, 'update']);
 });
 
 Route::middleware(['auth', 'user-access:kamsisdal'])->group(function ()
@@ -196,9 +204,12 @@ Route::middleware(['auth', 'user-access:direksi'])->group(function ()
     Route::get('/direksi/pengaduan', [direksiController::class, 'direksiPengaduan'])->name('direksi.pengaduan');
     Route::get('/direksi/buatakun', [direksiController::class, 'direksicracc'])->name('direksi.buatakun');
     Route::get('/direksi/detail', [direksiController::class, 'direksidtpengaduan'])->name('direksi.dtpengaduan');
+     Route::get('/direksi/detail/{id_user}', [DireksiController::class, 'readdetail']);
     Route::get('/direksi/profil', [DireksiController::class, 'direksiProfil'])->name('direksi.profil');
     Route::get('/direksi/edit_profil', [DireksiController::class, 'direksiEditprofil'])->name('direksi.editprofil');
-
+    Route::get('/direksi/edit_profil/{user}', [DireksiController::class, 'editprofil'])->name('direksi.editprofil');
+    Route::put('/direksi/edit_profil/{user}/update', [DireksiController::class, 'updateprofil'])->name('direksi.updateprofil');
+    
 });
 Route::middleware(['auth', 'user-access:keuangan'])->group(function ()
 {
@@ -220,14 +231,23 @@ Route::middleware(['auth', 'user-access:umum'])->group(function ()
 });
 /*---------------*/
 Route::get('/laporan/pengaduan', [LaporanController::class, 'index']);
+Route::get('/laporan/list/mhs', [LaporanController::class, 'indexmhs']);
 Route::get('/laporan/create_laporan', [LaporanController::class, 'create']);
-Route::get('/mahasiswa/create_laporan/mhs', [MahasiswaController::class, 'createmhs']);
+// Route::get('/laporan/create_laporan/mhs', [LaporanController::class, 'createmhs']);
+// Route::get('/laporan/detail_laporan', [LaporanController::class, 'edit']);
+Route::get('/mahasiswa/create_laporan/mhs', [LaporanController::class, 'createmhs']);
 Route::post('/laporan/simpan', [LaporanController::class, 'store'])->name('store');
-Route::post('/mahasiswa/simpan/mhs', [MahasiswaController::class, 'storemhs'])->name('storemhs');
+Route::post('/laporan/simpan/mhs', [LaporanController::class, 'storemhs'])->name('storemhs');
 Route::get('superadmin/pengaduan', [LaporanController::class, 'read'])->name('read');
 Route::get('direksi/pengaduan', [LaporanController::class, 'readdireksi'])->name('readdireksi');
-Route::get('/upload', [LaporanController::class, 'upload']);
-Route::post('/upload/proses', [LaporanController::class, 'proses_upload']);
+Route::get('akademik/pengaduan', [LaporanController::class, 'readakd'])->name('readakd');
+Route::get('mahasiswa/mhsdb/list', [LaporanController::class, 'readmhs'])->name('readmhs');
+Route::get('kamsisdal/pengaduan', [LaporanController::class, 'readkmd'])->name('readkmd');
+Route::get('umum/pengaduan', [LaporanController::class, 'readumum'])->name('readumum');
+// Route::get('/upload', [LaporanController::class, 'upload']);
+// Route::post('/upload/proses', [LaporanController::class, 'proses_upload']);
+Route::get('/detail/tanggapan/{id}', [LaporanController::class, 'edit']);
+Route::put('/upload/proses/{id}/update', [LaporanController::class, 'update']);
 /*Logout*/
 Route::get('/logout', [LoginController::class, 'logout']);
 /*Logout*/

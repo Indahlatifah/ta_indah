@@ -39,7 +39,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
+ 
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
@@ -48,7 +48,7 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Main content -->
+    {{-- <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
         <div class="row">
@@ -197,97 +197,115 @@
               </div>
             </div>
             <!-- /.card -->
-          </div>
+          </div> --}}
           <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header border-0">
-                <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Aspirasi</h3>
-                  <a href="javascript:void(0);">View Report</a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex">
-                  <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">$18,230.00</span>
-                    <span>Sales Over Time</span>
-                  </p>
-                  <p class="ml-auto d-flex flex-column text-right">
-                    <span class="text-success">
-                      <i class="fas fa-arrow-up"></i> 33.1%
-                    </span>
-                    <span class="text-muted">Since last month</span>
-                  </p>
-                </div>
+          
+
+<div class="card">
+    <div class="card-header border-0">
+        <h3 class="card-title">Data Laporan Masuk</h3>
+        {{-- <div class="card-tools">
+            <a href="#" class="btn btn-sm btn-tool">
+                <i class="fas fa-download"></i>
+            </a>
+            <a href="#" class="btn btn-sm btn-tool">
+                <i class="fas fa-bars"></i>
+            </a>
+        </div> --}}
+    </div>
+    <div class="card-body">
+        <!-- Menggunakan data dari tabel "laporan" -->
+        @php
+        $jumlahDiterima = \App\Models\Laporan::where('status', 'diterima')->count();
+        $jumlahDitolak = \App\Models\Laporan::where('status', 'ditolak')->count();
+        $jumlahMenunggu = \App\Models\Laporan::whereNull('status')->count();
+        @endphp
+
+        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+            <p class="text-success text-xl">
+                <i class="ion ion-ios-people-outline"></i>
+            </p>
+            <p class="d-flex flex-column text-right">
+                <span class="font-weight-bold">
+                    <i class="ion ion-android-arrow-up text-success"></i> {{$jumlahDiterima}}
+                </span>
+                <span class="text-muted">Laporan Diterima</span>
+            </p>
+        </div>
+        <!-- /.d-flex -->
+        <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
+            <p class="text-warning text-xl">
+                <i class="ion ion-ios-refresh-empty"></i>
+            </p>
+            <p class="d-flex flex-column text-right">
+                <span class="font-weight-bold">
+                    <i class="ion ion-android-arrow-up text-warning"></i> {{$jumlahMenunggu}}
+                </span>
+                <span class="text-muted">Menunggu Konfirmasi</span>
+            </p>
+        </div>
+        <!-- /.d-flex -->
+        <div class="d-flex justify-content-between align-items-center mb-0">
+            <p class="text-danger text-xl">
+                <i class="ion ion-ios-people-outline"></i>
+            </p>
+            <p class="d-flex flex-column text-right">
+                <span class="font-weight-bold">
+                    <i class="ion ion-android-arrow-down text-danger"></i> {{$jumlahDitolak}}
+                </span>
+                <span class="text-muted"> Laporan Ditolak</span>
+            </p>
+        </div>
+    </div>
+</div>
+
                 <!-- /.d-flex -->
 
-                <div class="position-relative mb-4">
-                  <canvas id="sales-chart" height="200"></canvas>
-                </div>
+                {{-- @extends('layouts.app') --}}
+{{-- 
+@section('content')
+<div class="container">
+    <h1>Data Pengaduan per Bidang</h1>
+    <div>
+        <canvas id="chartPengaduan" width="400" height="200"></canvas>
+    </div>
+</div>
 
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> This year
-                  </span>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script>
+    // Ambil data dari PHP dan konversi ke JavaScript
+    var dataPengaduan = @json($dataPengaduan);
 
-                  <span>
-                    <i class="fas fa-square text-gray"></i> Last year
-                  </span>
-                </div>
-              </div>
-            </div>
-            <!-- /.card -->
+    // Ambil label bidang
+    var labels = dataPengaduan.map(item => 'Bidang ' + item.bidang);
 
-            <div class="card">
-              <div class="card-header border-0">
-                <h3 class="card-title">Online Store Overview</h3>
-                <div class="card-tools">
-                  <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-download"></i>
-                  </a>
-                  <a href="#" class="btn btn-sm btn-tool">
-                    <i class="fas fa-bars"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-success text-xl">
-                    <i class="ion ion-ios-refresh-empty"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-up text-success"></i> 12%
-                    </span>
-                    <span class="text-muted">CONVERSION RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <div class="d-flex justify-content-between align-items-center border-bottom mb-3">
-                  <p class="text-warning text-xl">
-                    <i class="ion ion-ios-cart-outline"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-up text-warning"></i> 0.8%
-                    </span>
-                    <span class="text-muted">SALES RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
-                <div class="d-flex justify-content-between align-items-center mb-0">
-                  <p class="text-danger text-xl">
-                    <i class="ion ion-ios-people-outline"></i>
-                  </p>
-                  <p class="d-flex flex-column text-right">
-                    <span class="font-weight-bold">
-                      <i class="ion ion-android-arrow-down text-danger"></i> 1%
-                    </span>
-                    <span class="text-muted">REGISTRATION RATE</span>
-                  </p>
-                </div>
-                <!-- /.d-flex -->
+    // Ambil jumlah pengaduan
+    var data = dataPengaduan.map(item => item.jumlah_pengaduan);
+
+    // Buat diagram batang menggunakan Chart.js
+    var ctx = document.getElementById('chartPengaduan').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Jumlah Pengaduan',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+@endsection --}}
               </div>
             </div>
           </div>

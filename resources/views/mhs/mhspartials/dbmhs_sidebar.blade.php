@@ -11,7 +11,7 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{ asset('template')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src="{{ asset('image/ava.png')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
         <a href="/mahasiswa/profil" class="d-block">{{ auth()->user()->name }}</a>
@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/mhs/mhsdb" class="nav-link">
+            <a href="/mahasiswa/mhsdb" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Beranda
@@ -35,7 +35,7 @@
             <a href="/mahasiswa/pengaduan" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                 Pengaduan
+                Laporan
               </p>
             </a>
           </li>

@@ -57,13 +57,15 @@ class DashboardController
         ]);
     }
 
-    public function Superdtpengaduan()
-    {
-        return view('super.detail_pengaduan',
+     public function Superdtpengaduan($id_user)
+     {
+        $laporan = DB::table('laporan')->where('id_user', $id_user)->get(); // Ubah 'id_user' sesuai dengan nama kolom yang mengacu ke foreign key
+        return view('super.detail_pengaduan', ['laporan' => $laporan]);
         [
             'title' => 'SP Detail Pengaduan'
-        ]);
+        ];
     }
+
     public function SuperEdit()
     {
         return view('super.edit',
