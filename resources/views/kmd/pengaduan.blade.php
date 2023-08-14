@@ -17,36 +17,44 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-    <!-- /.notif -->
-    @include('kmd.kmdpartials.dbkmd_notif')
-    <!-- Content Wrapper. Contains page content -->
-   
-  <!-- /.navbar -->
-  @include('kmd.kmdpartials.dbkmd_sidebar')
+
+ <!-- notif -->
+ @include('kmd.kmdpartials.dbkmd_notif')
+ <!-- /.notif -->
+
+
+     <!-- Sidebar Menu -->
+     @include('kmd.kmdpartials.dbkmd_sidebar')
+     <!-- /.sidebar -->
+  </aside>
+
    <!-- Content Wrapper. Contains page content -->
-   
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Daftar Pengaduan</h1>
+            <h1 class="m-0">Daftar Laporan</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Halaman Pengaduan</li>
+        
+              <li class="breadcrumb-item active">Halaman Laporan</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
    
-     <!-- /.navbar -->
-  @include('kmd.kmdpartials.dbkmd_dprow')
-  <!-- Content Wrapper. Contains page content -->
+        <!-- tabel pengaduan -->
+        @include('kmd.kmdpartials.dbkmd_dprow')
+        <!-- /.tabel pengaduan -->
     
+       
+
+    
+        </div>
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
@@ -60,9 +68,11 @@
   </div>
   <!-- /.content-wrapper -->
 
-<!-- /.footer -->
-@include('kmd.kmdpartials.footer')
-<!-- footer -->
+    <!-- footer -->
+    @include('kmd.kmdpartials.footer')
+    <!-- /.footer -->
+ </aside>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

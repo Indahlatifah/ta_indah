@@ -17,15 +17,13 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
-  
  
- <!-- notificatoinMenu -->
- @include('sarpras.sarpraspartials.dbsarpras_notif')
- <!-- /.sidebar -->
- <!-- Sidebar Menu -->
- @include('sarpras.sarpraspartials.dbsarpras_sidebar')
-<!-- /.sidebar -->
-
+    <!-- /.notif -->
+    @include('sarpras.sarpraspartials.dbsarpras_notif')
+    <!-- Content Wrapper. Contains page content -->  <!-- /.notif -->
+  <!-- /.navbar -->
+  @include('sarpras.sarpraspartials.dbsarpras_sidebar')
+   <!-- Content Wrapper. Contains page content -->
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -61,9 +59,10 @@
   </div>
   <!-- /.content-wrapper -->
 
-<!-- footer -->
+ <!-- /.footer -->
 @include('sarpras.sarpraspartials.footer')
 <!-- footer -->
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->

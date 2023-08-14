@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin</title>
+  <title>Kemahasiswaan</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,27 +17,28 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
+ 
+   <!-- /.navbar -->
+ @include('kms.kmspartials.dbkms_notif')
+ <!-- Content Wrapper. Contains page content -->
   
+ <!-- /.navbar -->
+ @include('kms.kmspartials.dbkms_sidebar')
+ <!-- Content Wrapper. Contains page content -->
 
-     <!-- /.notif -->
-     @include('kms.kmspartials.dbkms_notif')
-     <!-- Content Wrapper. Contains page content -->  <!-- /.notif -->
-    @include('kms.kmspartials.dbkms_sidebar')
-    <!-- Content Wrapper. Contains page content -->
-
-   <!-- Content Wrapper. Contains page content -->
-   <div class="content-wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Profile</h1>
+            <h1 class="m-0">Profil</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Profile</li>
+             
+              <li class="breadcrumb-item active">Profil</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -46,41 +47,75 @@
     <!-- /.content-header -->
 
     <section class="content">
-        <div class="container-fluid">
+      <div class="container-fluid">
           <div class="row">
-            <div class="col-md-4">
-  
-              <!-- Profile Image -->
-              <div class="card card-primary card-outline">
-                <div class="card-body box-profile">
-                  <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle"
-                         src="{{ asset('template/dist/img/user4-128x128.jpg')}}"
-                         alt="User profile picture">
+              <div class="col-md-4">
+                  <!-- Profile Image -->
+                  <div class="card card-primary card-outline">
+                      <div class="card-body box-profile">
+                          <div class="text-center">
+                              <img class="profile-user-img img-fluid img-circle"
+                                   src="{{ asset('image/ava.png')}}"
+                                   alt="User profile picture">
+                          </div>
+                          <h3 class="profile-username text-center">
+                              @if (Auth::check())
+                                  {{ Auth::user()->name }}
+                              @else
+                                  Nama Pengguna Tidak Ditemukan
+                              @endif
+                          </h3>
+                          <p class="text-muted text-center">
+                              @if (Auth::check())
+                                  @php
+                                      $dtRole = DB::table('users')->where('id', Auth::user()->id ?? '')->select('users.*', 'id', 'type')->first();
+                                  @endphp
+                                  @if ($dtRole->type == 8)
+                                      Umum
+                                  @elseif ($dtRole->type == 1)
+                                      Admin
+                                  @elseif ($dtRole->type == 2)
+                                      Kemahasiswaan
+                                  @elseif ($dtRole->type == 3)
+                                      Akademik
+                                  @elseif ($dtRole->type == 4)
+                                      Keamanan
+                                  @elseif ($dtRole->type == 5)
+                                      Sarana Prasarana
+                                  @elseif ($dtRole->type == 6)
+                                      Direksi
+                                  @elseif ($dtRole->type == 7)
+                                      Keuangan
+                                  @elseif ($dtRole->type == 0)
+                                      Mahasiswa
+                                  @endif
+                              @else
+                                  Peran Pengguna Tidak Ditemukan
+                              @endif
+                          </p>
+                          <ul class="list-group list-group-unbordered mb-3">
+                              <li class="list-group-item">
+                                  <b>Nama</b> <a class="float-right">{{ Auth::user()->name }}</a>
+                              </li>
+                              <li class="list-group-item">
+                                  <b>Username</b> <a class="float-right">{{ Auth::user()->email }}</a>
+                              </li>
+                              <li class="list-group-item">
+                                  <b>Password</b> <a class="float-right">******</a>
+                              </li>
+                          </ul>
+                          <a href="/kemahasiswaan/edit_profil/{{ Auth::user()->id }}" class="btn btn-primary btn-block"><b>Ubah</b></a>
+                      </div>
+                      <!-- /.card-body -->
                   </div>
-  
-                  <h3 class="profile-username text-center">Indah Latifah</h3>
-  
-                  <p class="text-muted text-center">Mahasiswa</p>
-  
-                  <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item">
-                      <b>Nama</b> <a class="float-right">Indah Latifah</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Username</b> <a class="float-right">D111911038</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Password</b> <a class="float-right">********</a>
-                    </li>
-                  </ul>
-  
-                  <a href="/kemahasiswaan/edit_profil" class="btn btn-primary btn-block"><b>Ubah</b></a>
-                </div>
-                <!-- /.card-body -->
+                  <!-- /.card -->
               </div>
-              <!-- /.card -->
-
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+  </section>
+  
              
       <!-- /.card -->
     </div>
@@ -93,9 +128,9 @@
   </div>
   <!-- /.content-wrapper -->
 
-  <!-- /.footer -->
-@include('kms.kmspartials.footer')
-<!-- footer -->
+   <!-- /.footer -->
+ @include('kms.kmspartials.footer')
+ <!-- footer -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

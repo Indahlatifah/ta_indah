@@ -160,7 +160,11 @@ Route::middleware(['auth', 'user-access:kemahasiswaan'])->group(function ()
     Route::get('/kemahasiswaan/buatakun', [KemahasiswaanController::class, 'Kmscracc'])->name('kemahasiswaan.buatakun');
     Route::get('/kemahasiswaan/detail', [KemahasiswaanController::class, 'Kmsdtpengaduan'])->name('kemahasiswaan.dtpengaduan');
     Route::get('/kemahasiswaan/profil', [KemahasiswaanController::class, 'KmsProfil'])->name('kemahasiswaan.profil');
-    Route::get('/kemahasiswaan/edit_profil', [KemahasiswaanController::class, 'KmsEditprofil'])->name('kemahasiswaan.editprofil');
+    // Route::get('/kemahasiswaan/edit_profil', [KemahasiswaanController::class, 'KmsEditprofil'])->name('kemahasiswaan.editprofil');
+    Route::get('/kemahasiswaan/edit_profil/{user}', [KemahasiswaanController::class, 'editprofil'])->name('kemahasiswaan.editprofil');
+    Route::put('/kemahasiswaan/edit_profil/{user}/update', [KemahasiswaanController::class, 'updateprofil'])->name('kemahasiswaan.updateprofil');
+    Route::get('/kemahasiswaan/detail/tanggapan/{id}', [KemahasiswaanController::class, 'edit']);
+    Route::put('/upload/proses/{id}/update/kms', [KemahasiswaanController::class, 'update']);
 });
 
 Route::middleware(['auth', 'user-access:akademik'])->group(function ()
@@ -184,7 +188,11 @@ Route::middleware(['auth', 'user-access:kamsisdal'])->group(function ()
     Route::get('/kamsisdal/buatakun', [KamsisdalController::class, 'Kmdcracc'])->name('kamsisdal.buatakun');
     Route::get('/kamsisdal/detail', [KamsisdalController::class, 'Kmddtpengaduan'])->name('kamsisdal.dtpengaduan');
     Route::get('/kamsisdal/profil', [KamsisdalController::class, 'KmdProfil'])->name('kamsisdal.profil');
-    Route::get('/kamsisdal/edit_profil', [KamsisdalController::class, 'KmdEditprofil'])->name('kamsisdal.editprofil');
+    // Route::get('/kamsisdal/edit_profil', [KamsisdalController::class, 'KmdEditprofil'])->name('kamsisdal.editprofil');
+    Route::get('/kamsisdal/edit_profil/{user}', [KamsisdalController::class, 'editprofil'])->name('kamsisdal.editprofil');
+    Route::put('/kamsisdal/edit_profil/{user}/update', [KamsisdalController::class, 'updateprofil'])->name('kamsisdal.updateprofil');
+    Route::get('/kamsisdal/detail/tanggapan/{id}', [KamsisdalController::class, 'edit']);
+    Route::put('/upload/proses/{id}/update/kmd', [KamsisdalController::class, 'update']);
 });
 
 Route::middleware(['auth', 'user-access:sarpras'])->group(function ()
@@ -194,8 +202,11 @@ Route::middleware(['auth', 'user-access:sarpras'])->group(function ()
     Route::get('/sarpras/buatakun', [sarprasController::class, 'sarprascracc'])->name('sarpras.buatakun');
     Route::get('/sarpras/detail', [sarprasController::class, 'sarprasdtpengaduan'])->name('sarpras.dtpengaduan');
     Route::get('/sarpras/profil', [SarprasController::class, 'sarprasProfil'])->name('sarpras.profil');
-    Route::get('/sarpras/edit_profil', [SarprasController::class, 'sarprasEditprofil'])->name('sarpras.editprofil');
-
+    // Route::get('/sarpras/edit_profil', [SarprasController::class, 'sarprasEditprofil'])->name('sarpras.editprofil');
+    Route::get('/sarpras/edit_profil/{user}', [sarprasController::class, 'editprofil'])->name('sarpras.editprofil');
+    Route::put('/sarpras/edit_profil/{user}/update', [sarprasController::class, 'updateprofil'])->name('sarpras.updateprofil');
+    Route::get('/sarpras/detail/tanggapan/{id}', [sarprasController::class, 'edit']);
+    Route::put('/upload/proses/{id}/update/sarpras', [sarprasController::class, 'update']);
 });
 
 Route::middleware(['auth', 'user-access:direksi'])->group(function ()
@@ -218,7 +229,11 @@ Route::middleware(['auth', 'user-access:keuangan'])->group(function ()
     Route::get('/keuangan/buatakun', [keuanganController::class, 'keuangancracc'])->name('keuangan.buatakun');
     Route::get('/keuangan/detail', [keuanganController::class, 'keuangandtpengaduan'])->name('keuangan.dtpengaduan');
     Route::get('/keuangan/profil', [keuanganController::class, 'keuanganProfil'])->name('keuangan.profil');
-    Route::get('/keuangan/edit_profil', [keuanganController::class, 'keuanganEditprofil'])->name('keuangan.editprofil');
+    // Route::get('/keuangan/edit_profil', [keuanganController::class, 'keuanganEditprofil'])->name('keuangan.editprofil');
+    Route::get('/keuangan/edit_profil/{user}', [KeuanganController::class, 'editprofil'])->name('keuangan.editprofil');
+    Route::put('/keuangan/edit_profil/{user}/update', [KeuanganController::class, 'updateprofil'])->name('keuangan.updateprofil');
+    Route::get('/keuangan/detail/tanggapan/{id}', [KeuanganController::class, 'edit']);
+    Route::put('/upload/proses/{id}/update/keuangan', [KeuanganController::class, 'update']);
 });
 Route::middleware(['auth', 'user-access:umum'])->group(function ()
 {
@@ -227,7 +242,12 @@ Route::middleware(['auth', 'user-access:umum'])->group(function ()
     Route::get('/umum/buatakun', [umumController::class, 'umumcracc'])->name('umum.buatakun');
     Route::get('/umum/detail', [umumController::class, 'umumdtpengaduan'])->name('umum.dtpengaduan');
     Route::get('/umum/profil', [umumController::class, 'umumProfil'])->name('umum.profil');
-    Route::get('/umum/edit_profil', [umumController::class, 'umumEditprofil'])->name('umum.editprofil');
+    // Route::get('/umum/edit_profil', [umumController::class, 'umumEditprofil'])->name('umum.editprofil');
+
+    Route::get('/umum/edit_profil/{user}', [umumController::class, 'editprofil'])->name('umum.editprofil');
+    Route::put('/umum/edit_profil/{user}/update', [umumController::class, 'updateprofil'])->name('umum.updateprofil');
+    Route::get('/umum/detail/tanggapan/{id}', [umumController::class, 'edit']);
+    Route::put('/upload/proses/{id}/update/umum', [umumController::class, 'update']);
 });
 /*---------------*/
 Route::get('/laporan/pengaduan', [LaporanController::class, 'index']);
@@ -241,9 +261,12 @@ Route::post('/laporan/simpan/mhs', [LaporanController::class, 'storemhs'])->name
 Route::get('superadmin/pengaduan', [LaporanController::class, 'read'])->name('read');
 Route::get('direksi/pengaduan', [LaporanController::class, 'readdireksi'])->name('readdireksi');
 Route::get('akademik/pengaduan', [LaporanController::class, 'readakd'])->name('readakd');
+Route::get('kemahasiswaan/pengaduan', [LaporanController::class, 'readkms'])->name('readkms');
 Route::get('mahasiswa/mhsdb/list', [LaporanController::class, 'readmhs'])->name('readmhs');
 Route::get('kamsisdal/pengaduan', [LaporanController::class, 'readkmd'])->name('readkmd');
 Route::get('umum/pengaduan', [LaporanController::class, 'readumum'])->name('readumum');
+Route::get('keuangan/pengaduan', [LaporanController::class, 'readkeuangan'])->name('readkeuangan');
+Route::get('sarpras/pengaduan', [LaporanController::class, 'readsarpras'])->name('readsarpras');
 // Route::get('/upload', [LaporanController::class, 'upload']);
 // Route::post('/upload/proses', [LaporanController::class, 'proses_upload']);
 Route::get('/detail/tanggapan/{id}', [LaporanController::class, 'edit']);

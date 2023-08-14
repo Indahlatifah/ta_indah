@@ -237,10 +237,28 @@ public function update(Request $request, $id)
        return view('kmd.pengaduan', ['laporan' => $laporan]);
    
    }
+   public function readkms()
+   {
+      $laporan = DB::table('laporan') -> get();
+      return view('kms.pengaduan', ['laporan' => $laporan]);
+  
+  }
    public function readumum()
    {
       $laporan = DB::table('laporan') -> get();
       return view('umum.pengaduan', ['laporan' => $laporan]);
+  
+  }
+  public function readkeuangan()
+   {
+      $laporan = DB::table('laporan') -> get();
+      return view('keuangan.pengaduan', ['laporan' => $laporan]);
+  
+  }
+  public function readsarpras()
+   {
+      $laporan = DB::table('laporan') -> get();
+      return view('sarpras.pengaduan', ['laporan' => $laporan]);
   
   }
 }
